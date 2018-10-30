@@ -1,0 +1,15 @@
+proxy:
+  build: .
+  ports:
+    - 8888:8888
+  command: microsocks -p 8888
+
+curl:
+  image: appropriate/curl
+  links:
+    - proxy:proxy
+  environment:
+    http_proxy: socks5://proxy:8888
+    https_proxy: socks5://proxy:8888
+    ftp_proxy: socks5://proxy:8888
+  command: http://api.ipify.org
