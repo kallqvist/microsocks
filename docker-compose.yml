@@ -1,5 +1,5 @@
 proxy:
-  build: .
+  image: kallqvist/microsocks
   ports:
     - 8888:8888
   command: microsocks -p 8888
